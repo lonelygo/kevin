@@ -33,7 +33,7 @@
     <!-- Meta & Info -->
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="theme-color" content="#0097A7">
+    <meta name="theme-color" content="#0288D1">
     <meta name="author" content="Kevin Di">
     <meta name="description" itemprop="description" content="">
     <meta name="keywords" content="null">
@@ -108,7 +108,7 @@
             "@type": "ImageObject",
             "url": "/img/favicon.png"
         },
-        "description": "Hi, nice to meet you !"
+        "description": "尽信书  不如无书"
     },
     "headline": "Hello World",
     "url": "http://yoursite.com/2017/07/21/hello-world/index.html",
@@ -182,7 +182,7 @@
   }
 
   a {
-    color: #00838F;
+    color: #0277BD;
   }
 
   .mdl-card__media,
@@ -192,13 +192,13 @@
   #scheme-Paradox .sidebar_archives-count,
   #scheme-Paradox .sidebar-colored .sidebar-header,
   #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
+    background-color: #0288D1 !important;
   }
 
   /* Sidebar User Drop Down Menu Text Color */
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
   #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
+    color: #0288D1 !important;
   }
 
   #post_entry-right-info,
@@ -211,29 +211,29 @@
   .sidebar-colored .sidebar-nav > .open > a:hover,
   .sidebar-colored .sidebar-nav > .open > a:focus,
   #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
+    color: #0288D1 !important;
   }
 
   .toTop {
-    background: #757575 !important;
+    background: #8E24AA !important;
   }
 
   .material-layout .material-post>.material-nav,
   .material-layout .material-index>.material-nav,
   .material-nav a {
-    color: #757575;
+    color: #8E24AA;
   }
 
   #scheme-Paradox .MD-burger-layer {
-    background-color: #757575;
+    background-color: #8E24AA;
   }
 
   #scheme-Paradox #post-toc-trigger-btn {
-    color: #757575;
+    color: #8E24AA;
   }
 
   .post-toc a:hover {
-    color: #00838F;
+    color: #0277BD;
     text-decoration: underline;
   }
 
@@ -244,12 +244,7 @@
 
     <style>
       body{
-        background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
+        background-image: url(/img/bg.png);
       }
     </style>
 
@@ -365,15 +360,8 @@
     <!-- Paradox Post Header -->
     
         
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
-    var randomNum = Math.floor(Math.random() * 19 + 1);
-
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-</script>
-
+            <!-- Pure Thumbnail -->
+            <div class="post_thumbnail-pure mdl-card__media mdl-color-text--grey-50" style="background-color:#B3E5FC !important">
         
     
             <p class="article-headline-p">
@@ -806,14 +794,14 @@ It will not impact the appearance and can give developers a lot of support :)
     });
     NProgress.start();
     $('#nprogress .bar').css({
-        'background': '#29d'
+        'background': '#18FFFF'
     });
     $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+        'box-shadow': '0 0 10px #18FFFF, 0 0 15px #18FFFF'
     });
     $('#nprogress .spinner-icon').css({
-        'border-top-color': '#29d',
-        'border-left-color': '#29d'
+        'border-top-color': '#18FFFF',
+        'border-left-color': '#18FFFF'
     });
     setTimeout(function() {
         NProgress.done();
