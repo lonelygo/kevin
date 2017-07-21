@@ -24,7 +24,11 @@
     
     
     
+        <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
     
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
     
     
     
@@ -36,7 +40,7 @@
     <meta name="theme-color" content="#0288D1">
     <meta name="author" content="Kevin Di">
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="null,tesseract ocr container">
 
     <!-- Site Verification -->
     
@@ -68,11 +72,11 @@
     <meta property="og:title" content="使用Tesseract训练集装箱号OCR识别 | 不如无书">
     <meta property="og:image" content="/img/favicon.jpg" />
     <meta property="og:description" content="">
-    
+    <meta property="og:article:tag" content="tesseract ocr container"> 
 
     
         <meta property="article:published_time" content="Fri Jul 21 2017 13:44:45 GMT+0800" />
-        <meta property="article:modified_time" content="Fri Jul 21 2017 13:45:52 GMT+0800" />
+        <meta property="article:modified_time" content="Fri Jul 21 2017 17:08:41 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -113,7 +117,7 @@
     "headline": "使用Tesseract训练集装箱号OCR识别",
     "url": "http://yoursite.com/2017/07/21/使用Tesseract训练集装箱号OCR识别/index.html",
     "datePublished": "Fri Jul 21 2017 13:44:45 GMT+0800",
-    "dateModified": "Fri Jul 21 2017 13:45:52 GMT+0800",
+    "dateModified": "Fri Jul 21 2017 17:08:41 GMT+0800",
     "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -282,7 +286,13 @@
     <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
     <!-- Analytics -->
-    
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-102971632-1', 'auto');ga('send', 'pageview');
+</script>
 
     <!-- Custom Head -->
     
@@ -415,7 +425,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/tesseract-ocr-container/">tesseract ocr container</a>
     </ul>
     
 
@@ -427,6 +437,17 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
     
 
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
     
 
     <!-- Share Weibo -->
@@ -488,7 +509,8 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h1 id="准备图片"><a href="#准备图片" class="headerlink" title="准备图片"></a>准备图片</h1>
+        <p>在研究CV项目的时候，用户提出需要通过监控视频进行“集装箱计数”与“集装箱号”识别，以便与舱单数据进行自动化的对比，发现潜在的监管风险。在研究了不少商用的集装箱号识别系统后发现为了保证识别准确率几乎都采用了 <strong><em>固定角度</em></strong> + <strong><em>多位置识别</em></strong> 的测量以降低干扰，提高识别准确率。<br>为了做这方面尝试，首先从集装箱号的OCR识别开始研究，这里记录下Tesseract训练自己的词库过程。</p>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h1 id="准备图片"><a href="#准备图片" class="headerlink" title="准备图片"></a>准备图片</h1>
     
 
     
@@ -512,14 +534,6 @@
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
-    
-        <a href="/2017/07/21/hello-world/" id="post_nav-older" class="next-content">
-            旧篇
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
     
 </nav>
 
@@ -607,7 +621,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -832,6 +846,9 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
