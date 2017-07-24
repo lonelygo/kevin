@@ -76,7 +76,7 @@
 
     
         <meta property="article:published_time" content="Fri Jul 21 2017 13:44:45 GMT+0800" />
-        <meta property="article:modified_time" content="Tue Jul 25 2017 02:00:51 GMT+0800" />
+        <meta property="article:modified_time" content="Tue Jul 25 2017 02:24:15 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -117,7 +117,7 @@
     "headline": "使用Tesseract训练集装箱号OCR识别",
     "url": "https://lonelygo.github.io/2017/07/21/使用Tesseract训练集装箱号OCR识别/index.html",
     "datePublished": "Fri Jul 21 2017 13:44:45 GMT+0800",
-    "dateModified": "Tue Jul 25 2017 02:00:51 GMT+0800",
+    "dateModified": "Tue Jul 25 2017 02:24:15 GMT+0800",
     "description": "CV | Tensorflow | Deep learning",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -350,7 +350,7 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-环境准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.环境准备</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1系统环境"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1系统环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2基础环境安装"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2基础环境安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-1-brew-安装"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">1.2.1 brew 安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-2-imagemagick-安装"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">1.2.2 imagemagick 安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-Tesseract-安装"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 Tesseract 安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#准备图片"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备图片</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-环境准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.环境准备</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1系统环境"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1系统环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2基础环境安装"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2基础环境安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-1-brew-安装"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">1.2.1 brew 安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-2-imagemagick-安装"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">1.2.2 imagemagick 安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-Tesseract-安装"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 Tesseract 安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-准备图片"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.准备图片</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-开始训练"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.开始训练</span></a></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -506,22 +506,24 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>在智能视频的项目中，用户提出需要通过监控视频进行 <strong><em>“集装箱计数”</em></strong> 与 <strong><em>“集装箱号”</em></strong> 识别，以便与舱单数据进行自动化的对比，发现潜在的监管风险。在研究了不少商用的集装箱号识别系统后，发现为了保证识别准确率几乎都采用了 <strong><em>固定角度</em></strong> + <strong><em>多位置识别</em></strong> 的测量以降低干扰，提高识别准确率。<br>考虑到用户业务的应用场景，不能在像“卡口”这样的位置进行三机位的固定场景的集装箱号识别。</p>
-<p>所以，为了做这方面尝试，首先从集装箱号的OCR识别开始研究，这里记录下Tesseract训练自己的词库过程。</p>
+        <p>在智能视频的项目中，用户提出需要通过监控视频进行 <strong><em>“集装箱计数”</em></strong> 与 <strong><em>“集装箱号”</em></strong> 识别，以便与舱单数据进行自动化的对比，发现潜在的监管风险。在研究了不少商用的集装箱号识别系统后，发现为了保证识别准确率几乎都采用了 <strong><em>固定角度</em></strong> + <strong><em>多位置识别</em></strong> 的原始图像获取方式以降低图片质量干扰，提高识别准确率。<br>考虑到用户业务的应用场景，不能在像“卡口”这样的位置进行三机位的固定场景的集装箱号识别。</p>
+<p>所以，为了做这方面尝试，首先从集装箱号的OCR识别开始研究，理论上，集装箱编号就是“英文字母+数字”的组合，但是实践验证利用Tesseract自带的eng词库进行识别，准确率有限，还是要考虑自己做针对性的训练，生成专用词库。</p>
+<p>在这里记录下Tesseract训练集装箱号词库过程。</p>
 <h1 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h1><h2 id="1-1系统环境"><a href="#1-1系统环境" class="headerlink" title="1.1系统环境"></a>1.1系统环境</h2><p>之前在Ubuntu 16.04 下跑过一遍完整的流程，做这个记录的过程准备用Mac环境进行。</p>
 <p>所以，本文的所有操作，没有特殊说明都是在macOS 10.12.6下。</p>
 <p>另外，你需要有一个Windows环境的系统，虚机没测试，但是理论上应该不会有问题，为什么需要下面会进行说明。</p>
 <h2 id="1-2基础环境安装"><a href="#1-2基础环境安装" class="headerlink" title="1.2基础环境安装"></a>1.2基础环境安装</h2><h3 id="1-2-1-brew-安装"><a href="#1-2-1-brew-安装" class="headerlink" title="1.2.1 brew 安装"></a>1.2.1 brew 安装</h3><p><strong><a href="https://brew.sh" target="_blank" rel="external">Homebrew</a></strong> 是macOS下的包管理工具，教程很多，自行搜索就好,基本就是终端执行一句话：</p>
 <p><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p>
-<h3 id="1-2-2-imagemagick-安装"><a href="#1-2-2-imagemagick-安装" class="headerlink" title="1.2.2 imagemagick 安装"></a>1.2.2 imagemagick 安装</h3><p> <strong><a href="https://www.imagemagick.org/script/index.php" target="_blank" rel="external">imagemagick</a></strong> 是一个牛逼到“奇葩”的图像处理库，可以说只有你想不到，没有他处理不了的，不明觉厉。</p>
+<h3 id="1-2-2-imagemagick-安装"><a href="#1-2-2-imagemagick-安装" class="headerlink" title="1.2.2 imagemagick 安装"></a>1.2.2 imagemagick 安装</h3><p> <strong><a href="https://www.imagemagick.org/script/index.php" target="_blank" rel="external">imagemagick</a></strong> 是一个牛逼到“奇葩”😺😺的图像处理库，可以说只有你想不到，没有他处理不了的，不明觉厉。</p>
 <p>有了这个库，后面做图像格式转换和预处理会非常方便，命令行就能解决问题，用到了再具体说。</p>
 <p><code>brew install imagemagick</code></p>
 <h2 id="1-3-Tesseract-安装"><a href="#1-3-Tesseract-安装" class="headerlink" title="1.3 Tesseract 安装"></a>1.3 Tesseract 安装</h2><p><a href="https://en.wikipedia.org/wiki/Tesseract_(software" target="_blank" rel="external">Tesseract-ocr</a>)2006年以后是Google赞助的开源项目了，Github地址在 <strong><em><a href="https://en.wikipedia.org/wiki/Tesseract_(software" target="_blank" rel="external">这里</a>)</em></strong> 目前最新的版本是Tesseract 4.0 alpha，和之前版本最大的变化是引入了LSTM（长短期记忆）这个在语音识别、自然语言处理和机器翻译领域非常火爆的神经网络技术。</p>
-<p>本次训练的记录是基于3.05版本的方法（虽然安装的是4.0 alpha），Github的项目Wiki页面也提供了对于4.0版本的<a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract-4.00" target="_blank" rel="external">训练方法</a>，一方面是英语渣，看来看去感觉官方文档写的太晦涩不好理解；一方面是懒，反正基于3.X版本训练出来的效果也还行(其实还是没快速看懂文档）。</p>
+<p>本次训练的记录是基于3.05版本的方法（虽然安装的是4.0 alpha），Github的项目Wiki页面也提供了对于4.0版本的<a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract-4.00" target="_blank" rel="external">训练方法</a>，一方面是英语渣，看来看去感觉官方文档写的太晦涩不好理解；一方面是懒，反正基于3.X版本训练出来的效果也还行(其实还是没快速看懂文档😓😓😓😓）。</p>
 <p>Ubuntu 下可以从源码编译安装，参考官方说明执行就好，Mac下可以源码也可以brew安装，brew安装4.0 alpha：</p>
 <p><code>brew install tesseract --HEAD --with-training-tools --with-all-languanges</code></p>
-<p>–HEAD    不加这个，应该就是默认安装3.05了<br>–with-training-tools    包括训练工具，否则就只能做识别不能训练<br>–with-all-languanges    包括所有的语言包，否则只有默认的英语识别（硬盘空间有限的话，可以以后按需<a href="https://github.com/tesseract-ocr/tesseract/blob/master/doc/tesseract.1.asc#languages" target="_blank" rel="external">下载</a>后甩到 /tessdata/目录下）。</p>
-<h1 id="准备图片"><a href="#准备图片" class="headerlink" title="准备图片"></a>准备图片</h1>
+<p>–HEAD    不加这个，应该就是默认安装3.05了;<br>–with-training-tools    包括训练工具，否则就只能做识别不能训练;<br>–with-all-languanges    包括所有的语言包，否则只有默认的英语识别（硬盘空间有限的话，可以以后按需<a href="https://github.com/tesseract-ocr/tesseract/blob/master/doc/tesseract.1.asc#languages" target="_blank" rel="external">下载</a>后甩到 /tessdata/目录下）。</p>
+<h1 id="2-准备图片"><a href="#2-准备图片" class="headerlink" title="2.准备图片"></a>2.准备图片</h1><h1 id="3-开始训练"><a href="#3-开始训练" class="headerlink" title="3.开始训练"></a>3.开始训练</h1><p>官方教程在<a href="https://github.com/tesseract-ocr/tesseract/wiki/Training-Tesseract" target="_blank" rel="external">这里</a>，完全可以跟着Wiki的教程进行，没有没要在往下看了😄😄。</p>
+
     
 
     
