@@ -76,7 +76,7 @@
 
     
         <meta property="article:published_time" content="Fri Jul 21 2017 13:44:45 GMT+0800" />
-        <meta property="article:modified_time" content="Tue Jul 25 2017 16:04:16 GMT+0800" />
+        <meta property="article:modified_time" content="Tue Jul 25 2017 16:17:16 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -117,7 +117,7 @@
     "headline": "使用Tesseract训练lang文件并OCR识别集装箱号",
     "url": "https://lonelygo.github.io/2017/07/21/使用Tesseract训练lang文件并OCR识别集装箱号/index.html",
     "datePublished": "Fri Jul 21 2017 13:44:45 GMT+0800",
-    "dateModified": "Tue Jul 25 2017 16:04:16 GMT+0800",
+    "dateModified": "Tue Jul 25 2017 16:17:16 GMT+0800",
     "description": "CV | Tensorflow | Deep learning",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -509,7 +509,7 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
         <p>在智能视频的项目中，用户提出需要通过监控视频进行 <strong><em>“集装箱计数”</em></strong> 与 <strong><em>“集装箱号”</em></strong> 识别，以便与舱单数据进行自动化的对比，发现潜在的监管风险。在研究了不少商用的集装箱号识别系统后，发现为了保证识别准确率几乎都采用了 <strong><em>固定角度</em></strong> + <strong><em>多位置识别</em></strong> 的原始图像获取方式以降低图片质量干扰，提高识别准确率。<br>考虑到用户业务的应用场景，不能在像“卡口”这样的位置进行三机位的固定场景的集装箱号识别。</p>
 <p>所以，为了做这方面尝试，首先从集装箱号的OCR识别开始研究，理论上，集装箱编号就是“英文字母+数字”的组合，但是实践验证利用Tesseract自带的eng词库进行识别，准确率有限，还是要考虑自己做针对性的训练，生成专用词库。</p>
 <p>在这里记录下Tesseract训练集装箱号词库过程。</p>
-<h1 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h1><h2 id="1-1系统环境"><a href="#1-1系统环境" class="headerlink" title="1.1系统环境"></a>1.1系统环境</h2><p>之前在Ubuntu 16.04 下跑过一遍完整的流程，做这个记录的过程准备用Mac环境进行。</p>
+<h1 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h1><h2 id="1-1系统环境"><a href="#1-1系统环境" class="headerlink" title="1.1系统环境"></a>1.1系统环境</h2><p>之前在Ubuntu 16.04 下跑过一遍完整的流程，本次在Mac环境进行。</p>
 <p>所以，本文的所有操作，没有特殊说明都是在macOS 10.12.6下。</p>
 <p>另外，你需要有一个Windows环境的系统，虚机没测试，但是理论上应该不会有问题，为什么需要下面会进行说明。</p>
 <h2 id="1-2基础环境安装"><a href="#1-2基础环境安装" class="headerlink" title="1.2基础环境安装"></a>1.2基础环境安装</h2><h3 id="1-2-1-brew-安装"><a href="#1-2-1-brew-安装" class="headerlink" title="1.2.1 brew 安装"></a>1.2.1 brew 安装</h3><p><strong><a href="https://brew.sh" target="_blank" rel="external">Homebrew</a></strong> 是macOS下的包管理工具，教程很多，自行搜索就好,基本就是终端执行一句话：</p>
@@ -538,9 +538,8 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <h2 id="2-3-调整图片DPI"><a href="#2-3-调整图片DPI" class="headerlink" title="2.3 调整图片DPI"></a>2.3 调整图片DPI</h2><p>按照2.1预备知识中的内容，官方推荐的DPI是300以上，一般图片都是72，所以需要请出imagemagick了，终端cd到保存剪切好的图片的目录，比如我的在这里：</p>
 <p><code>~/Documents/Soyuan/container_number/line</code></p>
 <p>图片名称都批量修改为：img-*.jpg，在终端执行：</p>
-<p>`<br>convert ‘*.jpg’ -density 300 ~/Documents/Soyuan/container_number/new/img-%d.jpg</p>
-<p>`</p>
-<p>对的，我把转换后的图片换了个目录，以防万一，检查没问题再手动删除吧，也不累。下一步，安装要求，再把图片转换成 <strong>.itf</strong> 格式，cd 到刚才的<code>new/</code>目录，执行：</p>
+<p><code>convert &#39;*.jpg&#39; -density 300 ~/Documents/Soyuan/container_number/new/img-%d.jpg</code></p>
+<p>对的，我把转换后的图片换了个目录，以防万一，检查没问题再手动删除吧，也不累。下一步，安装要求，再把图片转换成 <strong>.tif</strong> 格式，cd 到刚才的<code>new/</code>目录，执行：</p>
 <p><code>convert &#39;*.jpg&#39; ~/Documents/Soyuan/container_number/line/img-%d.tif</code></p>
 <p>嗯，我又给挪回去了。<br>convert 命令是imagemagick的其中之一，好用吧😄。</p>
 <h1 id="3-开始训练"><a href="#3-开始训练" class="headerlink" title="3.开始训练"></a>3.开始训练</h1><p>官方教程在<a href="https://github.com/tesseract-ocr/tesseract/wiki/Training-Tesseract" target="_blank" rel="external">这里</a>，完全可以跟着Wiki的教程进行，没有没要往下看了😄😄。</p>
@@ -550,21 +549,28 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <p>弹出对话框选择tif图片文件夹：<br><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-25/53865408.jpg" alt=""></p>
 <p>选择一部分图片，生成一个新的tif文件，我每次选择100张，不要问我为什么，点击<code>打开</code>：<br><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-25/45975987.jpg" alt=""></p>
 <p>输入文件名，保存就好。保存路径可以和原始文件不是一个文件夹，强烈建议单独建一个文件夹，没什么，就是后面还要用到，好找。</p>
-<p><strong><em>说明：</em></strong><br>这个文件名，是有讲究的，可以看官网文档的说明，有明确的格式要求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[lang].[fontname].exp[num].tif</div></pre></td></tr></table></figure></p>
+<p><strong><em>说明：</em></strong><br>这个文件名，是有讲究的，可以看官网文档的说明，有明确的格式要求：<br><code>[lang].[fontname].exp[num].tif</code></p>
 <p>lang–你准备训练的语言的名称，这个名称也是将来你使用的时候 -l 后面指定的名称；</p>
 <p>fontname–fontname就是fantname，需要你指定你的语言的字体名称，这个事情可以这么理解：不同的字体，字符的展现形式可是千变万化啊，比如楷体和王羲之字体。</p>
 <p>exp[num]—exp不解释，人家就这么定义的，照着敲，后面是编号，看明白了吧，这玩意其实支持增量训练，今天弄一点，明天弄一点，慢慢就能让自己训练的语言文件准确率越来好。</p>
-<p>所以，我的文件名是这样的(后面都假设你也是4组咯）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cont.Arial.exp1.tif</div><div class="line">cont.Arial.exp2.tif</div><div class="line">cont.Arial.exp3.tif</div><div class="line">cont.Arial.exp4.tif</div></pre></td></tr></table></figure></p>
-<p>好了，tif文件合并好了，摆渡回Mac（其实我是弄了个共享文件夹，后面来回次数不少呢，这样最方便）。</p>
-<h2 id="3-2-生成-box-文件"><a href="#3-2-生成-box-文件" class="headerlink" title="3.2 生成 .box 文件"></a>3.2 生成 .box 文件</h2><p>终端cd到刚才copy回来的目录，依次执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 batch.nochop makebox</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 batch.nochop makebox</div><div class="line">tesseract cont.Aria3.exp1.tif cont.Arial.exp3 batch.nochop makebox</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 batch.nochop makebox</div></pre></td></tr></table></figure></p>
-<p>在目录下应该就这样了：<br><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-25/61105223.jpg" alt=""></p>
+<p>所以，我的文件名是这样的(后面都假设你也是4组咯）：<br><code>cont.Arial.exp1.tif
+cont.Arial.exp2.tif
+cont.Arial.exp3.tif
+cont.Arial.exp4.tif</code><br>好了，tif文件合并好了，摆渡回Mac（其实我是弄了个共享文件夹，后面来回次数不少呢，这样最方便）。</p>
+<h2 id="3-2-生成-box-文件"><a href="#3-2-生成-box-文件" class="headerlink" title="3.2 生成 .box 文件"></a>3.2 生成 .box 文件</h2><p>终端cd到刚才copy回来的目录，依次执行：<br><code>tesseract cont.Arial.exp1.tif cont.Arial.exp1 batch.nochop makebox
+tesseract cont.Arial.exp2.tif cont.Arial.exp2 batch.nochop makebox
+tesseract cont.Aria3.exp1.tif cont.Arial.exp3 batch.nochop makebox
+tesseract cont.Arial.exp4.tif cont.Arial.exp4 batch.nochop makebox</code><br>在目录下应该就这样了：<br><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-25/61105223.jpg" alt=""></p>
 <p>我们就有了4组 .tif 和 .box 文件组成的文件对，这个很重要。</p>
 <p><strong><em>此处有大坑，千万小心</em></strong></p>
-<p>按正常流程，应该切换到下面 3.3 步骤了，但是我在Ubuntu 16.04 下面踩过一个硕大无比，真心想咋电脑的坑，但是在Mac下没遇到，谁让我上次手欠，用Ubuntu玩耍呢。一句话描述这个坑：</p>
-<p>再下下一步，也就是 3.4 中，我们会用到 3.3 的成果去生成 .tr 文件，但是，TNND居然会报错，报错谁没见过，但是这个报错坑的有点大。在 3.3 中，我们会千辛万苦的手动把一张张图片识别出来的内容校队正确，然后，他报错了！！！报错了！！！上一次，我合并的tif文件有200+图片，第一次弄也不熟悉，修改了差不多两天时间，然后就一下子重头开始了（所以现在知道我为啥100张一合并了吧，其实我上次后来50张一合并，吓坏了）。</p>
+<p>按正常流程，应该切换到下面 3.3 步骤了，但是我在Ubuntu 16.04 下面踩过一个硕大无比，真心想砸电脑的坑，但是在Mac下没遇到，谁让我上次手欠，用Ubuntu玩耍呢。一句话描述这个坑：</p>
+<p>再下下一步，也就是 3.4 中，我们会用到 3.3 的成果去生成 .tr 文件，但是，TNND居然会报错，报错谁没见过，但是这个报错坑的有点大。在 3.3 中，我们会千辛万苦的手动把一张张图片识别出来的文字校对正确，然后，他报错了！！！报错了！！！上一次，我合并的tif文件有200+图片，第一次弄也不熟悉，修改了差不多两天时间，然后就一下子重头开始了（所以现在知道我为啥100张一合并了吧，其实我上次后来50张一合并，吓坏了）。</p>
 <p>为了不踩坑，想到了一个简单有效还好用的方案：跳过 3.3 先执行 3.4 的命令，保证不报错，正常执行下去后，把输出结果删了，再回头从 3.3 走起。</p>
 <p>所以，我的建议是，先执行一遍下面的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 batch.nochop box.trian</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 batch.nochop box.trian</div><div class="line">tesseract cont.Arial.exp3.tif cont.Arial.exp3 batch.nochop box.trian</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 batch.nochop box.trian</div></pre></td></tr></table></figure>
+<p><code>tesseract cont.Arial.exp1.tif cont.Arial.exp1 batch.nochop box.trian
+tesseract cont.Arial.exp2.tif cont.Arial.exp2 batch.nochop box.trian
+tesseract cont.Arial.exp3.tif cont.Arial.exp3 batch.nochop box.trian
+tesseract cont.Arial.exp4.tif cont.Arial.exp4 batch.nochop box.trian</code></p>
 <p>确定执行没异样，生成了4个 .tr 文件，说明不太会踩坑了，删了 .tr 文件，正式开始下一步。</p>
 <h2 id="修改-tif-box-文件对"><a href="#修改-tif-box-文件对" class="headerlink" title="修改 .tif .box 文件对"></a>修改 .tif .box 文件对</h2><p>把这4对文件，全部Copy回Win电脑，开始人肉标注工作。</p>
 <p>启动<code>jTessBoxEditor.jar</code>,菜单栏第二排选择<code>Box Editor</code>,然后选择<code>Open</code>，打开<code>cont.Arial.exp1.tif</code>,老老实实按顺序开始吧，打开后界面应该这个样子的：</p>
