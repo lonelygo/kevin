@@ -76,7 +76,7 @@
 
     
         <meta property="article:published_time" content="Fri Jul 21 2017 13:44:45 GMT+0800" />
-        <meta property="article:modified_time" content="Thu Jul 27 2017 17:40:27 GMT+0800" />
+        <meta property="article:modified_time" content="Thu Jul 27 2017 20:19:24 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -117,7 +117,7 @@
     "headline": "使用Tesseract训练lang文件并OCR识别集装箱号",
     "url": "https://lonelygo.github.io/2017/07/21/使用Tesseract训练lang文件并OCR识别集装箱号/index.html",
     "datePublished": "Fri Jul 21 2017 13:44:45 GMT+0800",
-    "dateModified": "Thu Jul 27 2017 17:40:27 GMT+0800",
+    "dateModified": "Thu Jul 27 2017 20:19:24 GMT+0800",
     "description": "CV | Tensorflow | Deep learning",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -586,7 +586,7 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <p>每一个图片中的字符都正确，并且识别框位置准确。</p>
 <p>把 .box 和 .tif 文件Copy回Mac，正式开始训练，逐个使用下述命令，生成 .tr 文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 box.train</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 box.train</div><div class="line">tesseract cont.Arial.exp3.tif cont.Arial.exp3 box.train</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</div></pre></td></tr></table></figure>
-<p>执行后，会在同目录下生成 cont.Arial.exp1.txt ~ cont.Arial.exp4.txt 四个文件。</p>
+<p>执行后，会在同目录下生成 cont.Arial.exp1.tr ~ cont.Arial.exp4.tr 四个文件。</p>
 <h2 id="3-5-生成unicharset文件"><a href="#3-5-生成unicharset文件" class="headerlink" title="3.5 生成unicharset文件"></a>3.5 生成unicharset文件</h2><p>到这里开始有些东西就开始难理解了，比如这个 <code>unicharset</code>文件到底是什么，官方文档说明是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Tesseract’s unicharset file contains information on each symbol (unichar) the Tesseract OCR engine is trained to recognize.</div><div class="line">Currently, generating the unicharset file is done in two steps using these commands: unicharset_extractor and set_unicharset_properties.</div><div class="line">NOTE: The unicharset file must be regenerated whenever inttemp, normproto and pffmtable are generated (i.e. they must all be recreated when the box file is changed) as they have to be in sync.</div></pre></td></tr></table></figure>
 <p>建议还是看看，能多弄明白点不是也挺好么？不愿意看，那就直接执行命令。</p>
