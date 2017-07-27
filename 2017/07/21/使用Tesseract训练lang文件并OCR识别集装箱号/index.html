@@ -76,7 +76,7 @@
 
     
         <meta property="article:published_time" content="Fri Jul 21 2017 13:44:45 GMT+0800" />
-        <meta property="article:modified_time" content="Thu Jul 27 2017 17:34:21 GMT+0800" />
+        <meta property="article:modified_time" content="Thu Jul 27 2017 17:40:27 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -117,7 +117,7 @@
     "headline": "使用Tesseract训练lang文件并OCR识别集装箱号",
     "url": "https://lonelygo.github.io/2017/07/21/使用Tesseract训练lang文件并OCR识别集装箱号/index.html",
     "datePublished": "Fri Jul 21 2017 13:44:45 GMT+0800",
-    "dateModified": "Thu Jul 27 2017 17:34:21 GMT+0800",
+    "dateModified": "Thu Jul 27 2017 17:40:27 GMT+0800",
     "description": "CV | Tensorflow | Deep learning",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -556,7 +556,7 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <p>fontname–fontname就是fantname，需要你指定你的语言的字体名称，这个事情可以这么理解：不同的字体，字符的展现形式可是千变万化啊，比如楷体和王羲之字体。</p>
 <p>exp[num]—exp不解释，人家就这么定义的，照着敲，后面是编号，看明白了吧，这玩意其实支持增量训练，今天弄一点，明天弄一点，慢慢就能让自己训练的语言文件准确率越来好。</p>
 <p>所以，我的文件名是这样的(后面都假设你也是4组咯）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cont.Arial.exp1.tif</div><div class="line"></div><div class="line">cont.Arial.exp2.tif</div><div class="line"></div><div class="line">cont.Arial.exp3.tif</div><div class="line"></div><div class="line">cont.Arial.exp4.tif</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cont.Arial.exp1.tif</div><div class="line">cont.Arial.exp2.tif</div><div class="line">cont.Arial.exp3.tif</div><div class="line">cont.Arial.exp4.tif</div></pre></td></tr></table></figure>
 <p>好了，tif文件合并好了，摆渡回Mac（其实我是弄了个共享文件夹，后面来回次数不少呢，这样最方便）。</p>
 <h2 id="3-2-生成-box-文件"><a href="#3-2-生成-box-文件" class="headerlink" title="3.2 生成 .box 文件"></a>3.2 生成 .box 文件</h2><p>终端cd到刚才copy回来的目录，依次执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 batch.nochop makebox</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 batch.nochop makebox</div><div class="line">tesseract cont.Aria3.exp1.tif cont.Arial.exp3 batch.nochop makebox</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 batch.nochop makebox</div></pre></td></tr></table></figure></p>
 <p>在目录下应该就这样了：<br><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-25/61105223.jpg" alt=""></p>
@@ -588,9 +588,9 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 box.train</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 box.train</div><div class="line">tesseract cont.Arial.exp3.tif cont.Arial.exp3 box.train</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</div></pre></td></tr></table></figure>
 <p>执行后，会在同目录下生成 cont.Arial.exp1.txt ~ cont.Arial.exp4.txt 四个文件。</p>
 <h2 id="3-5-生成unicharset文件"><a href="#3-5-生成unicharset文件" class="headerlink" title="3.5 生成unicharset文件"></a>3.5 生成unicharset文件</h2><p>到这里开始有些东西就开始难理解了，比如这个 <code>unicharset</code>文件到底是什么，官方文档说明是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Tesseract’s unicharset file contains information on each symbol (unichar) the Tesseract OCR engine is trained to recognize.</div><div class="line"></div><div class="line">Currently, generating the unicharset file is done in two steps using these commands: unicharset_extractor and set_unicharset_properties.</div><div class="line"></div><div class="line">NOTE: The unicharset file must be regenerated whenever inttemp, normproto and pffmtable are generated (i.e. they must all be recreated when the box file is changed) as they have to be in sync.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Tesseract’s unicharset file contains information on each symbol (unichar) the Tesseract OCR engine is trained to recognize.</div><div class="line">Currently, generating the unicharset file is done in two steps using these commands: unicharset_extractor and set_unicharset_properties.</div><div class="line">NOTE: The unicharset file must be regenerated whenever inttemp, normproto and pffmtable are generated (i.e. they must all be recreated when the box file is changed) as they have to be in sync.</div></pre></td></tr></table></figure>
 <p>建议还是看看，能多弄明白点不是也挺好么？不愿意看，那就直接执行命令。</p>
-<h4 id="unicharset-extractor"><a href="#unicharset-extractor" class="headerlink" title="unicharset_extractor"></a>unicharset_extractor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">unicharset_extractor cont.Arial.exp1.box cont.Arial.exp2.box cont.Arial.exp3.box cont.Arial.exp4.box</div><div class="line"></div><div class="line">`</div></pre></td></tr></table></figure>
+<h4 id="unicharset-extractor"><a href="#unicharset-extractor" class="headerlink" title="unicharset_extractor"></a>unicharset_extractor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">unicharset_extractor cont.Arial.exp1.box cont.Arial.exp2.box cont.Arial.exp3.box cont.Arial.exp4.box</div><div class="line">`</div></pre></td></tr></table></figure>
 <p>秒返回结果，告诉你创建了一个 <code>unicharset</code>文件：</p>
 <p><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-26/69715090.jpg" alt=""></p>
 <h4 id="set-unicharset-properties"><a href="#set-unicharset-properties" class="headerlink" title="set_unicharset_properties"></a>set_unicharset_properties</h4><p><br>官方Wiki说的是还有这一步，但是不知道是不是一定要通过源码编译才有，反正我是没找到，这一步就忽略了。</p>
@@ -603,7 +603,9 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <p>其中fontname（！不允许有空格）是一个字符串命名的字体，italic，bold，fixed，serif和fraktur都是简单0或1标志指示字体是否具有命名属性。</p>
 <p>我觉得我训练的lang文件没有必要有什么特殊的，所以就全为 0 咯。</p>
 <h2 id="3-7-聚类：Clustering"><a href="#3-7-聚类：Clustering" class="headerlink" title="3.7 聚类：Clustering"></a>3.7 聚类：Clustering</h2><p>Clustering 官方提供了三个步骤，分别是：shapeclustering 、 mftraining 和 cntraining，。shapeclustering 貌似可以不执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">shapeclustering -F font_properties -U unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div><div class="line"></div><div class="line">mftraining -F font_properties -U unicharset -O cont.unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div><div class="line"></div><div class="line">cntraining cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shapeclustering -F font_properties -U unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mftraining -F font_properties -U unicharset -O cont.unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cntraining cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div></pre></td></tr></table></figure>
 <h2 id="3-8-合并文件"><a href="#3-8-合并文件" class="headerlink" title="3.8 合并文件"></a>3.8 合并文件</h2><p>到了这一步，行百里了。</p>
 <p>现在需要做的是把训练过程创建的五个文件：shapetable，normproto，inttemp，pffmtable，unicharset，用lang.为前缀重命名（例如cont.），然后运行combine_tessdata：</p>
 <p><code>combine_tessdata cont.</code></p>
@@ -611,14 +613,12 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <p><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-27/82020708.jpg" alt=""></p>
 <p>现在，训练目录下多了一个 <code>cont.traineddata</code> 文件，这就是我们训练得到的lang文件了。</p>
 <h2 id="3-9-把-lang-文件放到lang-目录"><a href="#3-9-把-lang-文件放到lang-目录" class="headerlink" title="3.9 把 lang 文件放到lang 目录"></a>3.9 把 lang 文件放到lang 目录</h2><p>可以先执行：</p>
-<p><code>tesseract --list-langs</code><br>如果安装的时候选择了 <code>--with-all-languanges</code> 输出应该会是这样 <code>List of available languages (108):</code> 开头。</p>
+<p><code>tesseract --list-langs</code></p>
+<p>如果安装的时候选择了 <code>--with-all-languanges</code> 输出应该会是这样 <code>List of available languages (108):</code> 开头。</p>
 <p>这里，Mac 和 Ubuntu 就不太一样了，由于是brew安装的，所以Mac的lang文件路径大概是：</p>
-<p>、<br>/usr/local/Cellar/tesseract/HEAD-f5c18f7/share/tessdata/</p>
-<p>实在找不到，就用</p>
-<p>where tesseract </p>
-<p>先找到软链接的位置，再去找原身。<br>、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/tesseract/HEAD-f5c18f7/share/tessdata/</div><div class="line"></div><div class="line">实在找不到，就用</div><div class="line"></div><div class="line">where tesseract </div><div class="line"></div><div class="line">先找到软链接的位置，再去找原身。</div></pre></td></tr></table></figure>
 <p>确定路径后，把 <code>cont.traineddata</code> 文件cp过去，再执行下 <code>tesseract --list-langs</code> 看看是不是多了一个，多了一个就对了。</p>
-<h2 id="3-10-验证"><a href="#3-10-验证" class="headerlink" title="3.10 验证"></a>3.10 验证</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tesseract path-to-some.pic  stdout -l cont</div></pre></td></tr></table></figure>
+<h2 id="3-10-验证"><a href="#3-10-验证" class="headerlink" title="3.10 验证"></a>3.10 验证</h2><p><code>tesseract path-to-some.pic  stdout -l cont</code></p>
 <h1 id="4-一些问题处理的方法"><a href="#4-一些问题处理的方法" class="headerlink" title="4 一些问题处理的方法"></a>4 一些问题处理的方法</h1>
     
 
