@@ -76,7 +76,7 @@
 
     
         <meta property="article:published_time" content="Fri Jul 21 2017 13:44:45 GMT+0800" />
-        <meta property="article:modified_time" content="Thu Jul 27 2017 17:27:34 GMT+0800" />
+        <meta property="article:modified_time" content="Thu Jul 27 2017 17:34:21 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -117,7 +117,7 @@
     "headline": "使用Tesseract训练lang文件并OCR识别集装箱号",
     "url": "https://lonelygo.github.io/2017/07/21/使用Tesseract训练lang文件并OCR识别集装箱号/index.html",
     "datePublished": "Fri Jul 21 2017 13:44:45 GMT+0800",
-    "dateModified": "Thu Jul 27 2017 17:27:34 GMT+0800",
+    "dateModified": "Thu Jul 27 2017 17:34:21 GMT+0800",
     "description": "CV | Tensorflow | Deep learning",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -506,7 +506,7 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>在智能视频的项目中，用户提出需要通过监控视频进行 <strong><em>“集装箱计数”</em></strong> 与 <strong><em>“集装箱号”</em></strong> 识别，以便与舱单数据进行自动化的对比，发现潜在的监管风险。在研究了不少商用的集装箱号识别系统后，发现为了保证识别准确率几乎都采用了 <strong><em>固定角度</em></strong> + <strong><em>多位置识别</em></strong> 的原始图像获取方式以降低图片质量干扰，提高识别准确率。<br>考虑到用户业务的应用场景，不能在像“卡口”这样的位置进行三机位的固定场景的集装箱号识别。</p>
+        <p>在某产品的规划中，想要通过监控视频进行 <strong><em>“集装箱计数”</em></strong> 与 <strong><em>“集装箱号”</em></strong> 识别，以便与舱单数据进行自动化的对比，发现潜在的监管风险。在研究了不少商用的集装箱号识别系统后，发现为了保证识别准确率几乎都采用了 <strong><em>固定角度</em></strong> + <strong><em>多位置识别</em></strong> 的原始图像获取方式以降低图片质量干扰，提高识别准确率。<br>考虑到用户业务的应用场景，不能在像“卡口”这样的位置进行三机位的固定场景的集装箱号识别。</p>
 <p>所以，为了做这方面尝试，首先从集装箱号的OCR识别开始研究，理论上，集装箱编号就是“英文字母+数字”的组合，但是实践验证利用Tesseract自带的eng词库进行识别，准确率有限，还是要考虑自己做针对性的训练，生成专用词库。</p>
 <p>在这里记录下Tesseract训练集装箱号词库过程。</p>
 <h1 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h1><h2 id="1-1系统环境"><a href="#1-1系统环境" class="headerlink" title="1.1系统环境"></a>1.1系统环境</h2><p>之前在Ubuntu 16.04 下跑过一遍完整的流程，最近又收集了一些样本图片，所以再训练看看效果，本次准备在Mac环境下进行。</p>
@@ -542,7 +542,7 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <p>对的，我把转换后的图片换了个目录，以防万一，检查没问题再手动删除吧，也不累。下一步，安装要求，再把图片转换成 <strong>.tif</strong> 格式，cd 到刚才的<code>new/</code>目录，执行：</p>
 <p><code>convert &#39;*.jpg&#39; ~/Documents/Soyuan/container_number/line/img-%d.tif</code></p>
 <p>嗯，我又给挪回去了。<br>convert 命令是imagemagick的其中之一，好用吧😄。</p>
-<h1 id="3-开始训练"><a href="#3-开始训练" class="headerlink" title="3.开始训练"></a>3.开始训练</h1><p>官方教程在<a href="https://github.com/tesseract-ocr/tesseract/wiki/Training-Tesseract" target="_blank" rel="external">这里</a>，完全可以跟着Wiki的教程进行，或者看 <a href="http://yanghespace.com/2015/11/01/Tesseract3训练新语言/" target="_blank" rel="external">翻译版本</a> 没有没要往下看了😄😄，</p>
+<h1 id="3-开始训练"><a href="#3-开始训练" class="headerlink" title="3.开始训练"></a>3.开始训练</h1><p>官方教程在<a href="https://github.com/tesseract-ocr/tesseract/wiki/Training-Tesseract" target="_blank" rel="external">这里</a>，完全可以跟着Wiki的教程进行，或者看 <a href="http://yanghespace.com/2015/11/01/Tesseract3训练新语言/" target="_blank" rel="external">翻译版本</a> 没有没要往下看了😄😄。</p>
 <h2 id="3-1-合并tif文件"><a href="#3-1-合并tif文件" class="headerlink" title="3.1 合并tif文件"></a>3.1 合并tif文件</h2><p>嗯，Windows第一次隆重出场👏👏👏。<br>由于是训练这种奇葩的文字场景，准备训练数据文件，貌似有且仅有手工操作这一条路了，好在<a href="https://github.com/tesseract-ocr/tesseract/wiki/AddOns" target="_blank" rel="external">这里</a>提供了一些有用的工具，反正都没用过，就选择了排序第一个的工具：<a href="http://vietocr.sourceforge.net/training.html" target="_blank" rel="external">jTessBoxEditor</a> 。原因有2个：1、好歹也是2016年的版本，其余的都是2013的，你怎么选？2、多终端支持，不挑不拣，Win／Mac／Linux 都能Run起来。</p>
 <p>下载的时候稍微留意下，页面目录左侧的下载地址，下载的不是jTessBoxEditor，而是VietOCR-4.5，这个对咱们没用，真实下载地址应该是 <a href="https://sourceforge.net/projects/vietocr/files/jTessBoxEditor/" target="_blank" rel="external">这里</a> ，所以啊，仔细看文档是很重要的一件事情。<br>下载，解压缩，直接执行就好，免安装，对了需要 <em>JRE 8u40</em> 以上支持。</p>
 <p>开始干正事，我选择在Win下进行，主要是用Win的人多，弄明白了以后可以发动群众一起来干活，手头反正有小黑，就用Win好了。</p>
@@ -556,24 +556,17 @@ ga('create', 'UA-102971632-1', 'auto'); ga('send', 'pageview');
 <p>fontname–fontname就是fantname，需要你指定你的语言的字体名称，这个事情可以这么理解：不同的字体，字符的展现形式可是千变万化啊，比如楷体和王羲之字体。</p>
 <p>exp[num]—exp不解释，人家就这么定义的，照着敲，后面是编号，看明白了吧，这玩意其实支持增量训练，今天弄一点，明天弄一点，慢慢就能让自己训练的语言文件准确率越来好。</p>
 <p>所以，我的文件名是这样的(后面都假设你也是4组咯）：</p>
-<p><code>cont.Arial.exp1.tif
-cont.Arial.exp2.tif
-cont.Arial.exp3.tif
-cont.Arial.exp4.tif</code><br>好了，tif文件合并好了，摆渡回Mac（其实我是弄了个共享文件夹，后面来回次数不少呢，这样最方便）。</p>
-<h2 id="3-2-生成-box-文件"><a href="#3-2-生成-box-文件" class="headerlink" title="3.2 生成 .box 文件"></a>3.2 生成 .box 文件</h2><p>终端cd到刚才copy回来的目录，依次执行：<br><code>tesseract cont.Arial.exp1.tif cont.Arial.exp1 batch.nochop makebox
-tesseract cont.Arial.exp2.tif cont.Arial.exp2 batch.nochop makebox
-tesseract cont.Aria3.exp1.tif cont.Arial.exp3 batch.nochop makebox
-tesseract cont.Arial.exp4.tif cont.Arial.exp4 batch.nochop makebox</code><br>在目录下应该就这样了：<br><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-25/61105223.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cont.Arial.exp1.tif</div><div class="line"></div><div class="line">cont.Arial.exp2.tif</div><div class="line"></div><div class="line">cont.Arial.exp3.tif</div><div class="line"></div><div class="line">cont.Arial.exp4.tif</div></pre></td></tr></table></figure>
+<p>好了，tif文件合并好了，摆渡回Mac（其实我是弄了个共享文件夹，后面来回次数不少呢，这样最方便）。</p>
+<h2 id="3-2-生成-box-文件"><a href="#3-2-生成-box-文件" class="headerlink" title="3.2 生成 .box 文件"></a>3.2 生成 .box 文件</h2><p>终端cd到刚才copy回来的目录，依次执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 batch.nochop makebox</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 batch.nochop makebox</div><div class="line">tesseract cont.Aria3.exp1.tif cont.Arial.exp3 batch.nochop makebox</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 batch.nochop makebox</div></pre></td></tr></table></figure></p>
+<p>在目录下应该就这样了：<br><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-25/61105223.jpg" alt=""></p>
 <p>我们就有了4组 .tif 和 .box 文件组成的文件对，这个很重要。</p>
 <p><strong><em>此处有大坑，千万小心</em></strong></p>
 <p>按正常流程，应该切换到下面 3.3 步骤了，但是我在Ubuntu 16.04 下面踩过一个硕大无比，真心想砸电脑的坑，但是在Mac下没遇到，谁让我上次手欠，用Ubuntu玩耍呢。一句话描述这个坑：</p>
 <p>再下下一步，也就是 3.4 中，我们会用到 3.3 的成果去生成 .tr 文件，但是，TNND居然会报错，报错谁没见过，但是这个报错坑的有点大。在 3.3 中，我们会千辛万苦的手动把一张张图片识别出来的文字校对正确，然后，他报错了！！！报错了！！！上一次，我合并的tif文件有200+图片，第一次弄也不熟悉，修改了差不多两天时间，然后就一下子重头开始了（所以现在知道我为啥100张一合并了吧，其实我上次后来50张一合并，吓坏了）。</p>
 <p>为了不踩坑，想到了一个简单有效还好用的方案：跳过 3.3 先执行 3.4 的命令，保证不报错，正常执行下去后，把输出结果删了，再回头从 3.3 走起。</p>
 <p>所以，我的建议是，先执行一遍下面的命令：</p>
-<p><code>tesseract cont.Arial.exp1.tif cont.Arial.exp1 box.train
-tesseract cont.Arial.exp2.tif cont.Arial.exp2 box.train
-tesseract cont.Arial.exp3.tif cont.Arial.exp3 box.train
-tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 box.train</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 box.train</div><div class="line">tesseract cont.Arial.exp3.tif cont.Arial.exp3 box.train</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</div></pre></td></tr></table></figure>
 <p>确定执行没异样，生成了4个 .tr 文件，说明不太会踩坑了，删了 .tr 文件，正式开始下一步。</p>
 <h2 id="修改-tif-box-文件对"><a href="#修改-tif-box-文件对" class="headerlink" title="修改 .tif .box 文件对"></a>修改 .tif .box 文件对</h2><p>把这4对文件，全部Copy回Win电脑，开始人肉标注工作。</p>
 <p>启动<code>jTessBoxEditor.jar</code>,菜单栏第二排选择<code>Box Editor</code>,然后选择<code>Open</code>，打开<code>cont.Arial.exp1.tif</code>,老老实实按顺序开始吧，打开后Win下界面应该这个样子的：</p>
@@ -592,22 +585,16 @@ tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</code></p>
 <p><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-26/93349280.jpg" alt=""></p>
 <p>每一个图片中的字符都正确，并且识别框位置准确。</p>
 <p>把 .box 和 .tif 文件Copy回Mac，正式开始训练，逐个使用下述命令，生成 .tr 文件。</p>
-<p><code>tesseract cont.Arial.exp1.tif cont.Arial.exp1 box.train
-tesseract cont.Arial.exp2.tif cont.Arial.exp2 box.train
-tesseract cont.Arial.exp3.tif cont.Arial.exp3 box.train
-tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tesseract cont.Arial.exp1.tif cont.Arial.exp1 box.train</div><div class="line">tesseract cont.Arial.exp2.tif cont.Arial.exp2 box.train</div><div class="line">tesseract cont.Arial.exp3.tif cont.Arial.exp3 box.train</div><div class="line">tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</div></pre></td></tr></table></figure>
 <p>执行后，会在同目录下生成 cont.Arial.exp1.txt ~ cont.Arial.exp4.txt 四个文件。</p>
 <h2 id="3-5-生成unicharset文件"><a href="#3-5-生成unicharset文件" class="headerlink" title="3.5 生成unicharset文件"></a>3.5 生成unicharset文件</h2><p>到这里开始有些东西就开始难理解了，比如这个 <code>unicharset</code>文件到底是什么，官方文档说明是：</p>
-<p>`<br>Tesseract’s unicharset file contains information on each symbol (unichar) the Tesseract OCR engine is trained to recognize.</p>
-<p>Currently, generating the unicharset file is done in two steps using these commands: unicharset_extractor and set_unicharset_properties.</p>
-<p>NOTE: The unicharset file must be regenerated whenever inttemp, normproto and pffmtable are generated (i.e. they must all be recreated when the box file is changed) as they have to be in sync.<br>`</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Tesseract’s unicharset file contains information on each symbol (unichar) the Tesseract OCR engine is trained to recognize.</div><div class="line"></div><div class="line">Currently, generating the unicharset file is done in two steps using these commands: unicharset_extractor and set_unicharset_properties.</div><div class="line"></div><div class="line">NOTE: The unicharset file must be regenerated whenever inttemp, normproto and pffmtable are generated (i.e. they must all be recreated when the box file is changed) as they have to be in sync.</div></pre></td></tr></table></figure>
 <p>建议还是看看，能多弄明白点不是也挺好么？不愿意看，那就直接执行命令。</p>
-<h4 id="unicharset-extractor"><a href="#unicharset-extractor" class="headerlink" title="unicharset_extractor"></a>unicharset_extractor</h4><p>`<br>unicharset_extractor cont.Arial.exp1.box cont.Arial.exp2.box cont.Arial.exp3.box cont.Arial.exp4.box</p>
-<p>`</p>
+<h4 id="unicharset-extractor"><a href="#unicharset-extractor" class="headerlink" title="unicharset_extractor"></a>unicharset_extractor</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">unicharset_extractor cont.Arial.exp1.box cont.Arial.exp2.box cont.Arial.exp3.box cont.Arial.exp4.box</div><div class="line"></div><div class="line">`</div></pre></td></tr></table></figure>
 <p>秒返回结果，告诉你创建了一个 <code>unicharset</code>文件：</p>
 <p><img src="http://otfu8zc9i.bkt.clouddn.com/17-7-26/69715090.jpg" alt=""></p>
 <h4 id="set-unicharset-properties"><a href="#set-unicharset-properties" class="headerlink" title="set_unicharset_properties"></a>set_unicharset_properties</h4><p><br>官方Wiki说的是还有这一步，但是不知道是不是一定要通过源码编译才有，反正我是没找到，这一步就忽略了。</p>
-<p><code>training/set_unicharset_properties -U input_unicharset -O output_unicharset --script_dir=training/langdata</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">training/set_unicharset_properties -U input_unicharset -O output_unicharset --script_dir=training/langdata</div></pre></td></tr></table></figure>
 <h2 id="3-6-定义-font-properties-文件"><a href="#3-6-定义-font-properties-文件" class="headerlink" title="3.6 定义 font_properties 文件"></a>3.6 定义 font_properties 文件</h2><p>重要的事情再说一遍，具体含义，看官方Wiki，这里就跟着往下执行就好。</p>
 <p>在当前的训练文件夹中，新建 <code>font_properties.txt</code> 文件，文件名不要自己发挥，必须这个名字，建议使用 <strong>vi</strong> 编辑，而不是用文档编辑器编辑，原因么，就是防止换行符的不一致问题咯。按照你的实际情况，在文档中输入下面一行内容，我输入的是：</p>
 <p><code>Arial  0 0 0 0 0</code></p>
@@ -616,11 +603,7 @@ tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</code></p>
 <p>其中fontname（！不允许有空格）是一个字符串命名的字体，italic，bold，fixed，serif和fraktur都是简单0或1标志指示字体是否具有命名属性。</p>
 <p>我觉得我训练的lang文件没有必要有什么特殊的，所以就全为 0 咯。</p>
 <h2 id="3-7-聚类：Clustering"><a href="#3-7-聚类：Clustering" class="headerlink" title="3.7 聚类：Clustering"></a>3.7 聚类：Clustering</h2><p>Clustering 官方提供了三个步骤，分别是：shapeclustering 、 mftraining 和 cntraining，。shapeclustering 貌似可以不执行。</p>
-<p>`</p>
-<p>shapeclustering -F font_properties -U unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</p>
-<p>mftraining -F font_properties -U unicharset -O cont.unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</p>
-<p>cntraining cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</p>
-<p>`</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">shapeclustering -F font_properties -U unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div><div class="line"></div><div class="line">mftraining -F font_properties -U unicharset -O cont.unicharset cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div><div class="line"></div><div class="line">cntraining cont.Arial.exp1.tr cont.Arial.exp2.tr cont.Arial.exp3.tr cont.Arial.exp4.tr</div></pre></td></tr></table></figure>
 <h2 id="3-8-合并文件"><a href="#3-8-合并文件" class="headerlink" title="3.8 合并文件"></a>3.8 合并文件</h2><p>到了这一步，行百里了。</p>
 <p>现在需要做的是把训练过程创建的五个文件：shapetable，normproto，inttemp，pffmtable，unicharset，用lang.为前缀重命名（例如cont.），然后运行combine_tessdata：</p>
 <p><code>combine_tessdata cont.</code></p>
@@ -635,8 +618,7 @@ tesseract cont.Arial.exp4.tif cont.Arial.exp4 box.train</code></p>
 <p>where tesseract </p>
 <p>先找到软链接的位置，再去找原身。<br>、</p>
 <p>确定路径后，把 <code>cont.traineddata</code> 文件cp过去，再执行下 <code>tesseract --list-langs</code> 看看是不是多了一个，多了一个就对了。</p>
-<h2 id="3-10-验证"><a href="#3-10-验证" class="headerlink" title="3.10 验证"></a>3.10 验证</h2><p>`<br>tesseract path-to-some.pic  stdout -l cont</p>
-<p>`</p>
+<h2 id="3-10-验证"><a href="#3-10-验证" class="headerlink" title="3.10 验证"></a>3.10 验证</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tesseract path-to-some.pic  stdout -l cont</div></pre></td></tr></table></figure>
 <h1 id="4-一些问题处理的方法"><a href="#4-一些问题处理的方法" class="headerlink" title="4 一些问题处理的方法"></a>4 一些问题处理的方法</h1>
     
 
