@@ -19,6 +19,13 @@ title: 不如无书
 # Short description of your site
 description: 不是好产品的码农不是好销售
 
+
+# add by kevin
+bigimg: /img/big-imgs/qinghai1.jpeg
+#  -  "/img/big-imgs/hawaii1.jpeg" : "Hawaii"
+#  - "/img/big-imgs/qinghai1.jpeg" : "Qinghai Lake，2014"
+#  - "/img/big-imgs/qinghai2.jpeg" : "Qinghai Lake，2014"
+
 # --- Navigation bar options --- #
 
 # List of links in the navigation bar
@@ -62,12 +69,6 @@ footer-link-col: "#777777"
 # footer-img: "/img/bgimage.png"
 # page-img: "/img/bgimage.png"
 
-# add by kevin
-bigimg: 
-  -  "/img/big-imgs/qinghai1.jpeg" : "青海湖，2014年"
-  -  "/img/big-imgs/hawaii1.jpeg" : "Hawaii"
-#  - "/img/big-imgs/qinghai1.jpeg" : "Qinghai Lake，2014"
-#  - "/img/big-imgs/qinghai2.jpeg" : "Qinghai Lake，2014"
 
 # --- Footer options --- #
 
