@@ -4,6 +4,7 @@ title: 40岁依然可以奋力前行
 subtitle: 互联网/IT从性别歧视到年龄歧视，现在似乎35岁已经具备找不到工作的条件了。
 bigimg: 
   -  "/img/big-imgs/qinghai1.jpeg" : "青海湖，2014年"
+  -  "/img/big-imgs/hawaii1.jpeg" : "Hawaii"
 tags: [杂谈]
 ---
 
