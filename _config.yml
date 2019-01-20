@@ -65,8 +65,8 @@ footer-link-col: "#777777"
 # add by kevin
 bigimg: 
   - "/img/big-imgs/hawaii1.jpeg" : "Hawaii"
-  - "/img/big-imgs/qinghai1.jpeg" : "Qinghai Lake @ 2014"
-  - "/img/big-imgs/qinghai2.jpeg" : "Qinghai Lake @ 2014"
+  - "/img/big-imgs/qinghai1.jpeg" : "Qinghai Lake，2014"
+  - "/img/big-imgs/qinghai2.jpeg" : "Qinghai Lake，2014"
 
 # --- Footer options --- #
 
