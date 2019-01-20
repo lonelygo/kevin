@@ -17,7 +17,7 @@ baseurl: ""
 title: 不如无书
 
 # Short description of your site
-description: 等我想好了!
+description: 不是好产品的码农不是好销售
 
 # --- Navigation bar options --- #
 
@@ -38,21 +38,21 @@ ico: "/img/avatar-icon.png"
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
-title-img: "/img/title-img.png"
+# title-img: "/img/title-img.png"
 
 # --- Background colour/image options --- #
 
 # Personalize the colors in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#F5F5F5"
-navbar-text-col: "#404040"
+navbar-col: "#4C4C4C"
+navbar-text-col: "#F5F5F5"
 navbar-children-col: "#F5F5F5"
 page-col: "#FFFFFF"
 link-col: "#008AFF"
 hover-col: "#0085A1"
-footer-col: "#F5F5F5"
-footer-text-col: "#777777"
-footer-link-col: "#404040" 
+footer-col: "#4C4C4C"
+footer-text-col: "#F5F5F5"
+footer-link-col: "#777777" 
 
 
 # Alternatively, the navbar, footer, and page background can be set to use background images
@@ -61,13 +61,18 @@ footer-link-col: "#404040"
 # navbar-img: "/img/bgimage.png"
 # footer-img: "/img/bgimage.png"
 # page-img: "/img/bgimage.png"
- 
+
+# add by kevin
+bigimg:
+  - "/img/big-imgs/hawaii1.jpeg" : "Hawaii"
+  - "/img/big-imgs/qinghai1.jpeg" : "青海湖 2014"
+  - "/img/big-imgs/qinghai2.jpeg" : "青海湖 2014"
 # --- Footer options --- #
 
 # Change all these values or delete the ones you don't want.
 # Important: you must keep the "name" parameter, everything else you can remove
-author:
-  name: ©️Kevin
+author: 
+  name: Kevin
 
 # Select your active Social Network Links.
 # Uncomment the links you want to show in the footer and add your information to each link.
@@ -102,7 +107,7 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "di.zemin@gmail.com"  # eg. "deanattali.com/beautiful-jekyll"
+# url-pretty: "di.zemin@gmail.com"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Web Statistics Section --- #
 
