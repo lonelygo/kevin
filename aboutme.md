@@ -1,16 +1,18 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: 非典型码农，兴趣广泛，关注计数。
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Kevin Di. I have the following qualities:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+- 在IT行业晃悠了快20年
+- 除了财务别的角色都干过，而且干的都还不差
+- 非常愿意和不同领域的人聊天，他山之石有时候非常惊艳
+- 
 
 What else do you need?
 
-### my history
+### 欢迎来撩
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+
