@@ -6,6 +6,7 @@ bigimg:
   -  "/img/big-imgs/qinghai1.jpeg" : "青海湖，2014年"
   -  "/img/big-imgs/hawaii1.jpeg" : "Hawaii"
 tags: [杂谈]
+comments: true
 ---
 
 # 引
