@@ -4,7 +4,6 @@ title: Container detection and container number OCR
 subtitle: 使用Tensorflow Object Detection API进行集装箱识别并对集装箱号进行OCR识别。
 bigimg: 
   -  "/img/big-imgs/container.jpeg" : "Container detection，2017"
-googlefonts: ["Noto Serif SC"]
 tags: [Tensorflow，OCR]
 comments: true
 ---
