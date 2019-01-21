@@ -80,9 +80,9 @@ author:
 social-network-links:
   rss: true
   email: "di.zemin@gmail.com"
-  facebook: di.zemin@gmail.com
-  github: di.zemin@gmail.com
-  twitter: di.zemin@gmail.com
+  facebook: zemin.di
+  github: lonelygo
+  twitter: lonelygo
 #  reddit: yourname
 #  google-plus: +DeanAttali
 #  linkedin: daattali
@@ -154,7 +154,7 @@ staticman:
 
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page
-excerpt_length: 100
+excerpt_length: 60
 
 # Character used to separate site title and description in HTML document title
 # and RSS feed title
