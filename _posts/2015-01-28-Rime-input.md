@@ -2,7 +2,6 @@
 layout: post
 title: Rime输入法—Squirrel词库添加及配置
 subtitle: Rime输入法—Mac版本-Squirrel（鼠须管）词库添加及配置
-image: /img/hello_world.jpeg
 tags: [教程，Mac]
 comments: true
 ---
