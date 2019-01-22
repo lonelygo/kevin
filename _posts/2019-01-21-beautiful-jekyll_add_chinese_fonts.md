@@ -21,7 +21,7 @@ comments: true
 
 &ensp;&ensp;&ensp;&ensp;作者的字体方案是：  
 
-&ensp;&ensp;&ensp;&ensp; - 标题，第一顺位字体：v**Open Sans**  
+&ensp;&ensp;&ensp;&ensp; - 标题，第一顺位字体：**Open Sans**  
 
 &ensp;&ensp;&ensp;&ensp; - 正文，第一顺位字体：**Lora**  
 

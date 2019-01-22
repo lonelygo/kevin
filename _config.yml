@@ -114,7 +114,7 @@ share-links-active:
 gtag: "UA-102971632-2"
 
 # Fill in your Google Analytics ID to track your website using GA
-google_analytics: "UA-102971632-2"
+google_analytics: "102971632"
 
 # Google Tag Manager ID
 gtm: "GTM-KCWPVLJ"
@@ -154,7 +154,7 @@ staticman:
 
 # Excerpt Word Length
 # Truncates the excerpt to the specified number of words on the index page
-excerpt_length: 60
+excerpt_length: 50
 
 # Character used to separate site title and description in HTML document title
 # and RSS feed title
