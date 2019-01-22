@@ -42,10 +42,10 @@ blockquote p:first-child {
   margin-top: 0;
 }
 hr.small {
-  max-width: 100px;
+  max-width: 120px;
   margin: 15px auto;
   border-width: 4px;
-  border-color: inherit;
+  border-color: #59fafa;
   border-radius: 3px;
 }
 
@@ -349,6 +349,7 @@ footer .theme-by {
 }
 .post-preview .post-subtitle {
   margin: 0;
+  font-family: 'Lato', 'Noto Sans SC', sans-serif;
   font-weight: 300;
   margin-bottom: 10px;
 }
@@ -489,6 +490,7 @@ footer .theme-by {
 .intro-header .page-heading .page-subheading,
 .intro-header .post-heading .post-subheading {
   font-size: 24px;
+  color: #cccccc;
   line-height: 1.5;
   display: block;
   font-family: 'Noto Sans SC', 'Roboto', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -533,13 +535,15 @@ footer .theme-by {
     padding: 150px 0;
   }
   .intro-header .page-heading h1 {
+    font-family: 'Noto Sans SC', 'Lato', sans-serif;
     font-size: 72px;
   }
   .intro-header .post-heading h1 {
+    font-family: 'Noto Sans SC', 'Lato', sans-serif;
     font-size: 42px;
   }
   .intro-header.big-img .img-desc {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
