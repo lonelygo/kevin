@@ -13,12 +13,13 @@
   color: #555555;
 }
 .highlight .gs {
+  font-weight: bold;
 }
 .highlight .gu {
   color: #aaaaaa;
 }
 .highlight .nb {
-  color: #f6aa11;
+  color: #00bcfb;
 }
 .highlight .cm {
   color: #75715e;
@@ -27,7 +28,7 @@
   color: #75715e;
 }
 .highlight .c1 {
-  color: #75715e;
+  color: #888888;
 }
 .highlight .cs {
   color: #75715e;
@@ -150,7 +151,7 @@
   color: #bbbbbb;
 }
 .highlight .ni {
-  color: #bbbbbb;
+  color: #ff82ff;
 }
 .highlight .bp {
   color: #bbbbbb;
@@ -168,7 +169,7 @@
   color: #bbbbbb;
 }
 .highlight {
-  color: #bbbbbb;
+  color: #03e9c7;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #bbbbbb;
