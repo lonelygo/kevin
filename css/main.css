@@ -10,7 +10,7 @@ layout: null
 
 body {
   font-family: 'Noto Sans SC', 'Roboto', sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   color: #404040;
   position: relative;
   background-color: {{ site.page-col }};
@@ -355,7 +355,8 @@ footer .theme-by {
 .post-preview .post-meta,
 .post-heading .post-meta {
   color: #808080;
-  font-size: 18px;
+  font-family: 'Lato', 'Roboto','Open Sans', sans-serif;
+  font-size: 16px;
   font-style: italic;
   margin: 0 0 10px;
 }
@@ -390,7 +391,7 @@ footer .theme-by {
 
 @media only screen and (min-width: 768px) {
   .post-preview .post-title {
-    font-size: 36px;
+    font-size: 30px;
   }
 }
 
@@ -487,8 +488,8 @@ footer .theme-by {
 }
 .intro-header .page-heading .page-subheading,
 .intro-header .post-heading .post-subheading {
-  font-size: 27px;
-  line-height: 1.1;
+  font-size: 24px;
+  line-height: 1.5;
   display: block;
   font-family: 'Noto Sans SC', 'Roboto', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -532,10 +533,10 @@ footer .theme-by {
     padding: 150px 0;
   }
   .intro-header .page-heading h1 {
-    font-size: 80px;
+    font-size: 72px;
   }
   .intro-header .post-heading h1 {
-    font-size: 50px;
+    font-size: 42px;
   }
   .intro-header.big-img .img-desc {
     font-size: 14px;

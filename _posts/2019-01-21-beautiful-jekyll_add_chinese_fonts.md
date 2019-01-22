@@ -9,9 +9,12 @@ comments: true
 ---
 
 &ensp;&ensp;&ensp;&ensp;之前是用的 Hexo 的方案搭建的 Github.io，Mac 升级到 10.14 之后，莫名其妙的 Safari 钥匙串自动填充功能就挂了，登录框得焦点再也不会自动提示你可用的账户名称了，咬着牙么也能用，心病难除，于是就抹盘重装了，然后你懂的 Hexo 没有备份☹️。好在我是一个极其懒惰的人，几年也没写过多少文字，直接`clone`下来rm -rf了重新提交个空白回去也不心疼。  
+
+# 所以需要有个模版主题
+
 &ensp;&ensp;&ensp;&ensp;人不能掉入同样的坑两次，所以这次老老实实用 Jekyll 方案了，简单好用。简单好用的另一面就是真“简单”，找来找去，找到现在用的这个[beautiful-jekyll](https://github.com/daattali/beautiful-jekyll)主题看起来还不错。
 
-# 居然正文用的是Serif字体，不能忍啊
+## 居然正文用的是Serif字体，不能忍啊！
 
 &ensp;&ensp;&ensp;&ensp;乔老爷子及其厨子接班人，成功的连续不断用 Retina 屏和 PingFang 字体降低着我们眼睛的耐受力，Serif 字体真的不太适应了，就想着自己改吧。直接 Google 尽然没有任何地方说怎么改这个主题的中文字体的。这事情就麻烦了，只能自力更生了，前端的世界基本不懂，但是起码知道 Html 和 CSS 文件是干嘛的么，大概文件结构什么情况，该去哪里找东西直这些基本概念还是有的么，咱也不算什么都不知道。
 
@@ -39,7 +42,7 @@ comments: true
 
 &ensp;&ensp;&ensp;&ensp;只需要动三个文件，分别如下，其中`blog`是你的博客根目录，相信你是知道的。  
 
-```bash
+``` bash
 blog/_layouts/base.html
 blog/css/main.css
 blig/css/bootstrap.min.css
@@ -48,7 +51,7 @@ blig/css/bootstrap.min.css
 
 &ensp;&ensp;&ensp;&ensp;`blog/_layouts/base.html`修改部如下，原来的两个默认字体我没删，换成了GoogleFonts文档推荐的写法。
 
-```html
+``` html
 ---
 
 common-googlefonts:
@@ -63,7 +66,7 @@ common-googlefonts:
 
 &ensp;&ensp;&ensp;&ensp;`blog/css/main.css`文件改的地方比较多，但是也就是个替换的事情，比如：
 
-```css
+``` css
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   ......
@@ -72,7 +75,7 @@ body {
 
 &ensp;&ensp;&ensp;&ensp;改成：
 
-```css
+``` css
 body {
   font-family: 'Noto Sans SC', 'Roboto', sans-serif;
   ......
@@ -81,7 +84,7 @@ body {
 
 &ensp;&ensp;&ensp;&ensp;再比如：
 
-```css
+``` css
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   ......
@@ -90,7 +93,7 @@ h1,h2,h3,h4,h5,h6 {
 
 &ensp;&ensp;&ensp;&ensp;改成：
 
-```css
+``` css
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Noto Sans SC', 'Roboto', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   ......
@@ -105,7 +108,7 @@ h1,h2,h3,h4,h5,h6 {
 
 &ensp;&ensp;&ensp;&ensp;如果要在首页上使用全宽的图片，可以在 `blog/index.html` 中按如下格式增加内容：
 
-```html
+``` vhtml
 ---
 layout: page
 title: your title
