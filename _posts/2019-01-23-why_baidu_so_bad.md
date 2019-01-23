@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 一分为三的看百度给百家号导流
-subtitle: 为github.io的Jekyll静态网页blog主题增加中文字体支持。
+subtitle: 百度又上头条了，这次不是卖药，是疑似给自家的百家号导流。
 bigimg: 
   -  "/img/big-imgs/hangzhou.jpeg" : "杭州，西湖，2016"
 tags: [杂谈]
