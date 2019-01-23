@@ -340,7 +340,7 @@ footer .theme-by {
 .post-preview a:focus,
 .post-preview a:hover {
   text-decoration: none;
-  color: {{ site.hover-col }};
+  color: {{ site.title-hover-col }};
 }
 
 .post-preview .post-title {
