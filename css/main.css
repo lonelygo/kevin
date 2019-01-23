@@ -610,7 +610,7 @@ footer .theme-by {
   font-weight: 800;
   letter-spacing: 1px;
   padding: 10px 5px;
-  background-color: #FFF;
+  background-color: #F5F5F5;
   border-radius: 0;
   color: #404040;
 }
@@ -622,8 +622,8 @@ footer .theme-by {
 .pager li a:hover,
 .pager li a:focus {
   color: #FFF;
-  border: 1px solid {{ site.hover-col }};
-  background-color: {{ site.hover-col }};
+  border: 1px solid {{ site.title-hover-col }};
+  background-color: {{ site.title-hover-col }};
 }
 
 .pager {
