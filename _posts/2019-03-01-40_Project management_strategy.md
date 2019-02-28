@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 项目管理实战——基于真实项目案例的项目管理策略分析。
+title: 项目管理实战——基于真实项目案例的项目管理策略
 subtitle: 实际的项目管理技巧与方法，很多东西是PMBOK、高项考试里不会出现的。
 image: /img/sml-imgs/svcc.jpeg
 bigimg: 
