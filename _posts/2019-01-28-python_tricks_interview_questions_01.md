@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python tricks for interview questions
-subtitle:Some python tricks you should know.
+subtitle: Some python tricks you should know.
 bigimg: 
   -  "/img/big-imgs/hangzhou.jpeg" : "杭州，西湖，2016"
 tags: [Python, 教程]
