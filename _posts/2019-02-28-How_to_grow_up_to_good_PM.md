@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PM成长之路——文中的内容都能做到，你就是好PM！
-subtitle: 关于项目管理过程的个人总结.
+subtitle: 关于项目管理过程的个人总结。
 bigimg: 
   -  "/img/big-imgs/hangzhou.jpeg" : "杭州，西湖，2016"
 tags: [杂谈]
