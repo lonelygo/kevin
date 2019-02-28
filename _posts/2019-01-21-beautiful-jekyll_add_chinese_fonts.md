@@ -4,7 +4,7 @@ title: Beautiful-Jekyll Theme 增加中文字体
 subtitle: 为github.io的Jekyll静态网页blog主题增加中文字体支持。
 bigimg: 
   -  "/img/big-imgs/hangzhou.jpeg" : "杭州，西湖，2016"
-tags: [教程，Github]
+tags: [教程, Github]
 comments: true
 ---
 
