@@ -8,7 +8,7 @@ tags: [Python, 教程]
 comments: true
 ---
 
-闲来无事，把平时不小心看到的各类Python tricks记录下来，大多都是基础用法，对于应付基础面试应该很好用的。
+闲来无事，把平时看到的一些Python tricks记录下来，大多都是基础用法，对于应付基础面试应该很好用的。
 
 # Python tricks - 01
 
