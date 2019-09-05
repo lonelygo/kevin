@@ -1,39 +1,42 @@
 ---
 common-css:
-  - "/css/bootstrap.min.css"
-  - "/css/bootstrap-social.css"
-  - "/css/main.css"
+- "/css/bootstrap.min.css"
+- "/css/bootstrap-social.css"
+- "/css/main.css"
 common-ext-css:
-  - "//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
+- "//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
 common-googlefonts:
-  - "Lora:400,400i,700,700i"
-  - "Noto+Sans+SC:300,400,500,700&amp;subset=chinese-simplified"
-  - "Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-  - "Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-  - "Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-  - "Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i"
+- "Lora:400,400i,700,700i"
+- "Noto+Sans+SC:300,400,500,700&amp;subset=chinese-simplified"
+- "Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
+- "Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+- "Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+- "Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i"
 common-js:
-  - "/js/jquery-1.11.2.min.js"
-  - "/js/bootstrap.min.js"
-  - "/js/main.js"
+- "/js/jquery-1.11.2.min.js"
+- "/js/bootstrap.min.js"
+- "/js/main.js"
 ---
 
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
-  {% include head.html %}
+<!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+{% include head.html %}
 
-  <body>
+<body>
 
-    {% include gtm_body.html %}
-  
-    {% include nav.html %}
+  {% include gtm_body.html %}
 
-    {{ content }}
+  {% include nav.html %}
 
-    {% include footer.html %}
-  
-    {% include footer-scripts.html %}
-  
-  </body>
+  {{ content }}
+
+  {% include footer.html %}
+
+  {% include footer-scripts.html %}
+
+  <script async id="slcLiveChat" src="https://widget.sonetel.com/SonetelWidget.min.js" data-account-id="206457626">
+  </script>
+</body>
+
 </html>
