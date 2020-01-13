@@ -44,6 +44,7 @@ avatar: "/img/avatar-icon.png"
 # title-img: "/img/title-img.png"
 
 # --- Background colour/image options --- #
+remote_theme: "dracula/gh-pages"
 
 # Personalize the colors in your website. Colour values can be any valid CSS colour
 
