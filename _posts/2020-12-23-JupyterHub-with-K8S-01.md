@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 项目管理实战——基于真实项目案例的项目管理策略
-subtitle: 实际的项目管理技巧与方法，很多东西是PMBOK、高项考试里不会出现的。
+title: JupyterHub-with-K8S part_1 k8s Deploy
+subtitle: This is the first part of a series of articles on deploying JupyterHub in a kubernetes environment.
 image: /img/sml-imgs/svcc.jpeg
 bigimg: 
   -  "/img/big-imgs/qinghai1.jpeg" : "青海湖，2014年"
