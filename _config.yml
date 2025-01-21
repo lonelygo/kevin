@@ -19,9 +19,6 @@ title: 不如无书
 # Short description of your site
 description: 不是好销售的码农不是好产品
 
-
-
-
 # --- Navigation bar options --- #
 
 # List of links in the navigation bar
@@ -32,7 +29,6 @@ navbar-links:
     - Model Zoo: "https://modelzoo.co/"
     - Learn markdown: "http://www.markdowntutorial.com/"
     - GitHub Pages: "https://pages.github.com/"
-  
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
@@ -44,7 +40,7 @@ avatar: "/img/avatar-icon.png"
 # title-img: "/img/title-img.png"
 
 # --- Background colour/image options --- #
-remote_theme: "dracula/gh-pages"
+remote_theme: "daattali/beautiful-jekyll@6.0.1"
 
 # Personalize the colors in your website. Colour values can be any valid CSS colour
 
@@ -54,11 +50,10 @@ navbar-children-col: "#5C5C5C"
 page-col: "#E7E9EE"
 link-col: "#008AFF"
 hover-col: "#59FAFA"
-title-hover-col : "#008AFF"
+title-hover-col: "#008AFF"
 footer-col: "#4C4C4C"
 footer-text-col: "#F5F5F5"
-footer-link-col: "#777777" 
-
+footer-link-col: "#777777"
 
 # Alternatively, the navbar, footer, and page background can be set to use background images
 # instead of colour
@@ -67,12 +62,11 @@ footer-link-col: "#777777"
 # footer-img: "/img/bgimage.png"
 # page-img: "/img/bgimage.png"
 
-
 # --- Footer options --- #
 
 # Change all these values or delete the ones you don't want.
 # Important: you must keep the "name" parameter, everything else you can remove
-author: 
+author:
   name: Kevin
 
 # Select your active Social Network Links.
@@ -140,14 +134,14 @@ disqus: "lonelygo"
 
 # Staticman support
 staticman:
-  repository : # GitHub username/repository eg. "daattali/beautiful-jekyll"
-  branch     : # eg. "master" If you're not using `master` branch, then you also need to update the `branch` parameter in `staticman.yml`
-  endpoint   : # URL of your own deployment (with trailing slash) (will fallback to a public GitLab instance)
+  repository: # GitHub username/repository eg. "daattali/beautiful-jekyll"
+  branch: # eg. "master" If you're not using `master` branch, then you also need to update the `branch` parameter in `staticman.yml`
+  endpoint: # URL of your own deployment (with trailing slash) (will fallback to a public GitLab instance)
   reCaptcha:
     # reCaptcha for Staticman (OPTIONAL)
     # If you use reCaptcha, you must also set these parameters in staticman.yml
-    siteKey  : # Use your own site key, you need to apply for one on Google
-    secret   : # ENCRYPT your password by going to https://staticman3.herokuapp.com/v3/encrypt/<your-site-secret>
+    siteKey: # Use your own site key, you need to apply for one on Google
+    secret: # ENCRYPT your password by going to https://staticman3.herokuapp.com/v3/encrypt/<your-site-secret>
 
 # --- Misc --- #
 
@@ -176,16 +170,14 @@ kramdown:
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
+      comments: true # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
-  -
-    scope:
+  - scope:
       path: "" # all files
     values:
       layout: "page"
@@ -207,8 +199,8 @@ exclude:
 
 # prose.io config
 prose:
-  rooturl: '_posts'
-  media: 'img'
+  rooturl: "_posts"
+  media: "img"
   ignore:
     - 404.html
     - LICENSE
@@ -260,6 +252,5 @@ prose:
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
